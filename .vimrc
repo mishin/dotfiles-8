@@ -1,3 +1,6 @@
+" This must be the first so other commands are properly affected
+set nocompatible
+
 " Меню для выбора кодировок
 set wildmenu
 set wcm=<Tab>
@@ -43,12 +46,21 @@ set visualbell
 
 set pastetoggle=<F12>
 
-autocmd FileType perl syn include @perlDATA syntax/MojoliciousTemplate.vim
+syntax on
+"autocmd FileType perl syn include @perlDATA syntax/MojoliciousTemplate.vim
 
-" Запрещаем Perl::Tags - ошибка 
+" Запрещаем Perl::Tags - ошибка
 let Perl_PerlTags="disabled"
 
-colorscheme evening
+"colorscheme evening
+
+" show the cursor position all the time
+set ruler
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+set showcmd
 
 " automatically remove trailing whitespace before write
 function! StripTrailingWhitespace()
@@ -57,8 +69,16 @@ function! StripTrailingWhitespace()
   if line("'Z") != line(".")
     echo "Stripped whitespace\n"
   endif
-  normal `Z
+normal `Z
 endfunction
 
 " Разрешить для удаления пробелов в конце строки при каждой записи файла
 "autocmd BufWritePre *.pl,*.pm :call StripTrailingWhitespace()
+
+" Convenient command to see the difference between the current buffer and the
+" file it was loaded from, thus the changes you made.
+" Only define it when not defined already.
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
