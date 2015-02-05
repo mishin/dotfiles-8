@@ -68,13 +68,13 @@ function set_git_aliases {
 
 # Perljobs aliases
 function init_perljobs {
-    export PERLJOBS_HOME="$HOME/projects/perljobs/perljobs"
-    alias goperljobs="cd $PERLJOBS_HOME"
-    alias golib="cd $PERLJOBS_HOME/lib"
-    alias gosql="cd $PERLJOBS_HOME/sql"
-    alias goscript="cd $PERLJOBS_HOME/script"
-    alias gotemplates="cd $PERLJOBS_HOME/templates"
-    alias gostatic="cd $PERLJOBS_HOME/public"
+    export PERLJOBS_ROOT="$HOME/projects/perljobs/perljobs"
+    alias goperljobs="cd $PERLJOBS_ROOT"
+    alias golib="cd $PERLJOBS_ROOT/lib"
+    alias gosql="cd $PERLJOBS_ROOT/sql"
+    alias goscript="cd $PERLJOBS_ROOT/script"
+    alias gotemplates="cd $PERLJOBS_ROOT/templates"
+    alias gostatic="cd $PERLJOBS_ROOT/public"
 }
 
 # BVL websites

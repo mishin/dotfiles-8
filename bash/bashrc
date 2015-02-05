@@ -5,8 +5,8 @@ export HISTSIZE=10000
 set -o vi
 
 # Set up perlbrew
-export PERLBREW_HOME="$HOME/perl5/perlbrew"
-source $PERLBREW_HOME/etc/bashrc
+export PERLBREW_ROOT="$HOME/perl5/perlbrew"
+source $PERLBREW_ROOT/etc/bashrc
 
 LANG=en_US.UTF-8
 export LANG
