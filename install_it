@@ -18,6 +18,7 @@ for dir in `ls -F | grep -G '\/$'` ; do
             until [ ".$answer" = '.a' -o ".$answer" = '.y' -o ".$answer" = '.n' ] ; do
                 read -p "Install $dir$f to $destdir/.$f? [y/n/all] " -n 1 answer
                 answer=`echo $answer | tr "[:upper:]" "[:lower:]"`
+                echo
             done
         fi
         if [ $answer = 'y' ] || [ $answer = 'a' ] ; then
