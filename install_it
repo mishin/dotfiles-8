@@ -1,0 +1,24 @@
+#!/bin/bash
+
+destdir=$1 || $HOME;
+mkdir $destdir
+if [ ! -d "$destdir" ] ; then
+    echo "Can't create $destdir"
+    exit 1
+fi
+
+for dir in `ls -F | grep -G '\/$'` ; do
+    for f in `ls $dir` ; do
+        if [ ".$answer" != ".a" ] ; then
+            answer=''
+            until [ ".$answer" = '.a' -o ".$answer" = '.y' -o ".$answer" = '.n' ] ; do
+                read -p "Install $dir$f to $destdir/.$f? [y/n/all] " -n 1 answer
+                answer=`echo $answer | tr "[:upper:]" "[:lower:]"`
+                echo -ne "\nans: $answer\n"
+            done
+        fi
+        if [ $answer = 'y' ] || [ $answer = 'a' ] ; then
+            /bin/cp -v "$dir$f" "$destdir/.$f"
+        fi
+    done
+done
