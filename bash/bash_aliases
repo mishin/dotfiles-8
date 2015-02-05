@@ -1,0 +1,105 @@
+#!/bin/bash
+
+# Mac-only aliases
+function set_osx_aliases {
+    alias ls='ls -G'
+    # Copy a highlighted
+    function hlcopy() {
+        if [ -z $1 ] ; then 
+            echo "No file specified"
+            return
+        fi
+        highlight -O rtf $* | pbcopy
+        echo "Highlighted data copied into clipboard"
+    }
+}
+function init_homebrew {
+    export PATH=/usr/local/bin:$PATH
+    export HOMEBREW_GITHUB_API_TOKEN='ea37c75dcce17b9c86d1be2ddaa2eb0e5d3df48e'
+    # Homebrew's bash completion
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        . $(brew --prefix)/etc/bash_completion
+    fi
+}
+
+# Virtualbox-related aliases and functions
+function set_virtualbox_aliases {
+    alias startvm='VBoxManage startvm --type headless'
+    alias lsrunningvms='VBoxManage list runningvms'
+    alias lsvms='VBoxManage list vms'
+
+    function stopvm() {
+        if [ -z $1 ]
+        then
+            echo "No vm specified"
+            return
+        fi
+        VBoxManage controlvm $1 acpipowerbutton
+    }
+
+    function pausevm() {
+        if [ -z $1 ]
+        then
+            echo "No vm specified"
+            return
+        fi
+        VBoxManage controlvm $1 pause
+    }
+
+    function resumevm() {
+        if [ -z $1 ]
+        then
+            echo "No vm specified"
+            return
+        fi
+        VBoxManage controlvm $1 resume
+    }
+}
+
+# Git aliases
+function set_git_aliases {
+    alias gs='git status'
+    alias gd='git diff'
+    alias gb='git branch'
+    alias gc='git commit'
+    alias gco='git checkout'
+    alias ga='git add'
+}
+
+# Perljobs aliases
+function init_perljobs {
+    export PERLJOBS_HOME="$HOME/projects/perljobs/perljobs"
+    alias goperljobs="cd $PERLJOBS_HOME"
+    alias golib="cd $PERLJOBS_HOME/lib"
+    alias gosql="cd $PERLJOBS_HOME/sql"
+    alias goscript="cd $PERLJOBS_HOME/script"
+    alias gotemplates="cd $PERLJOBS_HOME/templates"
+    alias gostatic="cd $PERLJOBS_HOME/public"
+}
+
+# BVL websites
+function init_bvl {
+    alias sshgiftland='ssh giftland@giftland.newhost.ru'
+    alias sshaskstore='ssh ayry@ayry.newhost.ru'
+    alias sshphilip='ssh u98834@u98834.ssh.masterhost.ru'
+}
+
+### Actually set aliases
+
+if [ `uname` = 'Darwin' ]; then
+    set_osx_aliases
+    init_homebrew
+fi
+if [ -x /usr/bin/VBoxManage ] ; then
+    set_virtualbox_aliases
+fi
+if [ -x /usr/bin/git ] ; then
+    set_git_aliases
+fi
+
+alias wakenas='wakeonlan ec:43:f6:aa:77:af'
+alias goxchatlogs='cd "$HOME/Library/Containers/org.3rddev.xchatazure/Data/Library/Application Support/XChat Azure/xchatlogs"'
+
+# Initialize projects
+init_perljobs
+init_bvl

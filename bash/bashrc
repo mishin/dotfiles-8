@@ -1,0 +1,20 @@
+# I like a long history
+export HISTSIZE=10000
+
+# bwahahahaha
+set -o vi
+
+# Set up perlbrew
+export PERLBREW_HOME="$HOME/perl5/perlbrew"
+source $PERLBREW_HOME/etc/bashrc
+
+LANG=en_US.UTF-8
+export LANG
+
+if [ -f $HOME/.git-completion.bash ] ; then
+    source $HOME/.git-completion.bash
+fi
+
+if [ -f $HOME/.bash_aliases ] ; then
+    source $HOME/.bash_aliases
+fi
