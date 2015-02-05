@@ -26,3 +26,4 @@ for dir in `ls -F | grep -G '\/$'` ; do
         fi
     done
 done
+echo 'Done'
