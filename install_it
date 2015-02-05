@@ -1,10 +1,14 @@
 #!/bin/bash
 
-destdir=$1 || $HOME;
-mkdir $destdir
-if [ ! -d "$destdir" ] ; then
-    echo "Can't create $destdir"
-    exit 1
+if [ ! -z $1 ] ; then
+    destdir=$1
+    mkdir $destdir
+    if [ ! -d "$destdir" ] ; then
+        echo "Can't create $destdir"
+        exit 1
+    fi
+else
+    destdir=$HOME
 fi
 
 for dir in `ls -F | grep -G '\/$'` ; do
