@@ -84,6 +84,11 @@ function init_bvl {
     alias sshphilip='ssh u98834@u98834.ssh.masterhost.ru'
 }
 
+# godoc with pager
+function godoc {
+    command godoc "$@" | LESS="-XF" ${PAGER:-less}
+}
+
 ### Actually set aliases
 
 if [ `uname` = 'Darwin' ]; then

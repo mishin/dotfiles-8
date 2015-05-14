@@ -8,6 +8,12 @@ set -o vi
 export PERLBREW_ROOT="$HOME/perl5/perlbrew"
 source $PERLBREW_ROOT/etc/bashrc
 
+# Set up Go lang
+export GOPATH=$HOME/go
+export GOBIN=$GOPATH/bin
+export PATH=$PATH:$GOBIN
+
+# Set up locale
 LANG=en_US.UTF-8
 export LANG
 
